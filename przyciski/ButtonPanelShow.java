@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import biblioteka.Biblioteka;
+import tekst.CzytelnikPokaz;
 
 public class ButtonPanelShow extends JPanel implements ActionListener{
 	private Biblioteka b;
@@ -46,6 +47,16 @@ public class ButtonPanelShow extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		Object source = e.getSource();
 		if(source == czytelnikButton) {
+			SwingUtilities.invokeLater(new Runnable(){
+				@Override
+				public void run() {
+					JPanel showPanel = new CzytelnikPokaz( b);
+					
+					frame.getContentPane().removeAll();
+                    frame.add(showPanel);
+                    frame.validate();
+				}
+			});
 			
 		}else if(source == ksiazkaButton) {
 			

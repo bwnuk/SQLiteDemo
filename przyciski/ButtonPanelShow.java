@@ -50,7 +50,7 @@ public class ButtonPanelShow extends JPanel implements ActionListener{
 			SwingUtilities.invokeLater(new Runnable(){
 				@Override
 				public void run() {
-					JPanel showPanel = new CzytelnikPokaz( b);
+					JPanel showPanel = new CzytelnikPokaz(frame, b);
 					
 					frame.getContentPane().removeAll();
                     frame.add(showPanel);

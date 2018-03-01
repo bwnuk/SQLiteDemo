@@ -1,5 +1,4 @@
 package tekst;
-
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,35 +18,32 @@ import javax.swing.SwingUtilities;
 
 import biblioteka.Biblioteka;
 import model.Czytelnik;
+import model.Ksiazka;
 import przyciski.ButtonPanel;
 
-public class CzytelnikTekst extends JPanel implements ActionListener {
+
+public class KsiazkaTekst extends JPanel implements ActionListener {
 	
 	private Biblioteka b;
-	
-	private JTextField imie;
-	private JTextField nazwisko;
-	private JTextField pesel;
+	private JTextField tytul;
+	private JTextField autor;
 	
 	private JButton acceptButton;
 	
 	private final JFrame frame;
 	
-	public String getImie() {
-		return imie.getText();
+	public String getTytul() {
+		return tytul.getText();
 	}
 	
-	public String getNazwisko() {
-		return nazwisko.getText();
-	}
-	public String getPesel() {
-		return pesel.getText();
+	public String getAutor() {
+		return autor.getText();
 	}
 	
-	public CzytelnikTekst(JFrame frame, Biblioteka b) {
+	public KsiazkaTekst(Biblioteka b, JFrame frame) {
 		super();
-		this.b = b;
 		this.frame = frame;
+		this.b = b;
 		
         GridBagLayout gridBag = new GridBagLayout();
         GridBagConstraints constraints = new GridBagConstraints();
@@ -58,25 +54,20 @@ public class CzytelnikTekst extends JPanel implements ActionListener {
 	}
 	
 	private void createComponents() {
-		JLabel imieLabel = new JLabel("Imie: ");
-		JLabel nazwiskoLabel = new JLabel("Nazwisko: ");
-		JLabel peselLabel = new JLabel("Pesel: ");
+		JLabel tytulLabel = new JLabel("Ksiazka: ");
+		JLabel autorLabel = new JLabel("Autor: ");
 		
-		imie = new JTextField();
-		nazwisko = new JTextField();
-		pesel = new JTextField();
+		tytul = new JTextField();
+		autor = new JTextField();
 		
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(3, 3));
         
-        inputPanel.add(imieLabel);
-        inputPanel.add(imie);
-        inputPanel.add(nazwiskoLabel);
-        inputPanel.add(nazwisko);
-        inputPanel.add(peselLabel);
-        inputPanel.add(pesel);
-        
-        acceptButton = new JButton("Wprowadz");
+        inputPanel.add(tytulLabel);
+        inputPanel.add(tytul);
+        inputPanel.add(autorLabel);
+        inputPanel.add(autor);
+		acceptButton = new JButton("Wprowadz");
         
         acceptButton.addActionListener((ActionListener) this);
         
@@ -92,10 +83,10 @@ public class CzytelnikTekst extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == acceptButton) {
-			b.insertCzytelnik(getImie(), getNazwisko(), getPesel());
-	        System.out.println("Lista czytelników: ");
-	        List<Czytelnik> czytelnicy = b.selectCzytelnicy();
-	        for(Czytelnik c: czytelnicy)
+			b.insertKsiazka(getTytul(), getAutor());
+	        System.out.println("Lista ksiazek: ");
+	        List<Ksiazka> ksiazki = b.selectKsiazki();
+	        for(Ksiazka c:  ksiazki)
 	            System.out.println(c);
 	        
 	        SwingUtilities.invokeLater(new Runnable(){
@@ -111,5 +102,3 @@ public class CzytelnikTekst extends JPanel implements ActionListener {
 		}
 	}
 }
-
-

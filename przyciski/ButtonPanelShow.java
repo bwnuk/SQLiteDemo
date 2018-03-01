@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 
 import biblioteka.Biblioteka;
 import tekst.CzytelnikPokaz;
+import tekst.KsiazkaPokaz;
 
 public class ButtonPanelShow extends JPanel implements ActionListener{
 	private Biblioteka b;
@@ -44,7 +45,6 @@ public class ButtonPanelShow extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		Object source = e.getSource();
 		if(source == czytelnikButton) {
 			SwingUtilities.invokeLater(new Runnable(){
@@ -59,7 +59,16 @@ public class ButtonPanelShow extends JPanel implements ActionListener{
 			});
 			
 		}else if(source == ksiazkaButton) {
-			
+			SwingUtilities.invokeLater(new Runnable(){
+				@Override
+				public void run() {
+					JPanel showPanel = new KsiazkaPokaz(frame, b);
+					
+					frame.getContentPane().removeAll();
+                    frame.add(showPanel);
+                    frame.validate();
+				}
+			});
 		}else if(source == wypozyczenieButton) {
 			
 		}else if(source == backButton) {

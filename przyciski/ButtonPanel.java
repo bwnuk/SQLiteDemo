@@ -32,7 +32,6 @@ public class ButtonPanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		Object source = e.getSource();
 		if(source == showButton){
 			SwingUtilities.invokeLater(new Runnable(){

@@ -13,21 +13,21 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import przyciski.ButtonPanelShow;
+import model.Czytelnik;
+import model.Ksiazka;
 
 import biblioteka.Biblioteka;
-import model.Czytelnik;
-import przyciski.ButtonPanelShow;
 
+public class KsiazkaPokaz extends JPanel implements ActionListener{
 
-public class CzytelnikPokaz extends JPanel implements ActionListener{
-	
 	private final JFrame frame;
 	private Biblioteka b;
 	private JButton actionButton;
 	
 	private final JEditorPane editorPane = new JEditorPane();
 	
-	public CzytelnikPokaz(JFrame frame, Biblioteka b){
+	public KsiazkaPokaz(JFrame frame, Biblioteka b){
 		super();
 		this.frame = frame;
 		this.b = b;
@@ -48,8 +48,8 @@ public class CzytelnikPokaz extends JPanel implements ActionListener{
         this.add(helpPanel);
         this.add(actionButton);
         String text = "Lista: ";
-        List<Czytelnik> czytelnicy = b.selectCzytelnicy();
-        for(Czytelnik c: czytelnicy)
+        List<Ksiazka> ksiazki = b.selectKsiazki();
+        for(Ksiazka c: ksiazki)
         	text = text + System.lineSeparator() + c;
         
         editorPane.setText(text);
@@ -57,7 +57,7 @@ public class CzytelnikPokaz extends JPanel implements ActionListener{
         //this.add(helpPanel, BorderLayout.CENTER);
         //this.add(actionButton, BorderLayout.SOUTH);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();

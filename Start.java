@@ -7,7 +7,6 @@ public class Start {
 
 	public static void main(String[] args) {
 		Biblioteka b = new Biblioteka();
-		// TODO Auto-generated method stub
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {

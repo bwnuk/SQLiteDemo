@@ -61,7 +61,7 @@ public class KsiazkaTekst extends JPanel implements ActionListener {
 		autor = new JTextField();
 		
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(3, 3));
+        inputPanel.setLayout(new GridLayout(1, 1));
         
         inputPanel.add(tytulLabel);
         inputPanel.add(tytul);

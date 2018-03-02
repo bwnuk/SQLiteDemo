@@ -16,17 +16,17 @@ import javax.swing.SwingUtilities;
 
 import biblioteka.Biblioteka;
 import przyciski.ButtonPanelShow;
-import model.Czytelnik;
+import model.Wypozyczenia;
 
-public class CzytelnikPokaz extends JPanel implements ActionListener{
-	
+public class WypozyczeniePokaz extends JPanel implements ActionListener{
+
 	private final JFrame frame;
 	private Biblioteka b;
 	private JButton actionButton;
 	
 	private final JEditorPane editorPane = new JEditorPane();
 	
-	public CzytelnikPokaz(JFrame frame, Biblioteka b){
+	public WypozyczeniePokaz(JFrame frame, Biblioteka b) {
 		super();
 		this.frame = frame;
 		this.b = b;
@@ -47,16 +47,14 @@ public class CzytelnikPokaz extends JPanel implements ActionListener{
         this.add(helpPanel);
         this.add(actionButton);
         String text = "Lista: ";
-        List<Czytelnik> czytelnicy = b.selectCzytelnicy();
-        for(Czytelnik c: czytelnicy)
+        List<Wypozyczenia> wypozyczenia = b.selectWypozyczenia();
+        for(Wypozyczenia c: wypozyczenia)
         	text = text + System.lineSeparator() + c;
         
         editorPane.setText(text);
         editorPane.revalidate();
-        //this.add(helpPanel, BorderLayout.CENTER);
-        //this.add(actionButton, BorderLayout.SOUTH);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
@@ -73,4 +71,5 @@ public class CzytelnikPokaz extends JPanel implements ActionListener{
 		});
 		}
 	}
+
 }

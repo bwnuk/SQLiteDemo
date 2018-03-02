@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 import biblioteka.Biblioteka;
 import tekst.CzytelnikTekst;
 import tekst.KsiazkaTekst;
+import tekst.WypozyczenieTekst;
 
 public class ButtonPanelAdd extends JPanel implements ActionListener{
 	private final JFrame frame;
@@ -56,7 +57,8 @@ public class ButtonPanelAdd extends JPanel implements ActionListener{
                     frame.validate();
 				}
 			});
-		}else if(source == ksiazkaButton) {
+		}
+		else if(source == ksiazkaButton) {
 			SwingUtilities.invokeLater(new Runnable(){
 				@Override
 				public void run() {
@@ -67,10 +69,20 @@ public class ButtonPanelAdd extends JPanel implements ActionListener{
                     frame.validate();
 				}
 			});
-			
-		}else if(source == wypozyczenieButton) {
-			
-		}else if(source == backButton) {
+		}
+		else if(source == wypozyczenieButton) {
+			SwingUtilities.invokeLater(new Runnable(){
+				@Override
+				public void run() {
+					JPanel buttonPanel = new WypozyczenieTekst(frame, b);
+					
+					frame.getContentPane().removeAll();
+                    frame.add(buttonPanel);
+                    frame.validate();
+				}
+			});
+		}
+		else if(source == backButton) {
 			SwingUtilities.invokeLater(new Runnable(){
 				@Override
 				public void run() {
@@ -82,7 +94,5 @@ public class ButtonPanelAdd extends JPanel implements ActionListener{
 				}
 			});
 		}
-		
 	}
-	
 }

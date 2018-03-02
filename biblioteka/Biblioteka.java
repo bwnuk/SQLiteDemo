@@ -175,6 +175,7 @@ public class Biblioteka {
         }
         return wypozyczenia;
     }
+    
     public void closeConnection() {
         try {
             conn.close();

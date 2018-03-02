@@ -19,32 +19,29 @@ import javax.swing.SwingUtilities;
 
 import biblioteka.Biblioteka;
 import przyciski.ButtonPanel;
+import model.Wypozyczenia;
 import model.Czytelnik;
+import model.Ksiazka;
 
-public class CzytelnikTekst extends JPanel implements ActionListener{
-	
+public class WypozyczenieTekst  extends JPanel implements ActionListener{
 	private Biblioteka b;
 	
-	private JTextField imie;
-	private JTextField nazwisko;
-	private JTextField pesel;
+	private JTextField id_czytelnika;
+	private JTextField id_ksiazki;
 	
 	private JButton acceptButton;
 	
 	private final JFrame frame;
 	
-	public String getImie() {
-		return imie.getText();
+	public int getIdCzytelnik() {
+		return Integer.parseInt(id_czytelnika.getText());
 	}
 	
-	public String getNazwisko() {
-		return nazwisko.getText();
-	}
-	public String getPesel() {
-		return pesel.getText();
+	public int getIdKsiazki() {
+		return Integer.parseInt(id_ksiazki.getText());
 	}
 	
-	public CzytelnikTekst(JFrame frame, Biblioteka b) {
+	public WypozyczenieTekst(JFrame frame, Biblioteka b) {
 		super();
 		this.b = b;
 		this.frame = frame;
@@ -58,24 +55,20 @@ public class CzytelnikTekst extends JPanel implements ActionListener{
 	}
 	
 	private void createComponents() {
-		JLabel imieLabel = new JLabel("Imie: ");
-		JLabel nazwiskoLabel = new JLabel("Nazwisko: ");
-		JLabel peselLabel = new JLabel("Pesel: ");
+		JLabel id_c = new JLabel("ID czytelnika: ");
+		JLabel id_k = new JLabel("ID ksiazki");
 		
-		imie = new JTextField();
-		nazwisko = new JTextField();
-		pesel = new JTextField();
+		id_czytelnika = new JTextField();
+		id_ksiazki = new JTextField();
 		
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(3, 3));
-        
-        inputPanel.add(imieLabel);
-        inputPanel.add(imie);
-        inputPanel.add(nazwiskoLabel);
-        inputPanel.add(nazwisko);
-        inputPanel.add(peselLabel);
-        inputPanel.add(pesel);
-        
+		JPanel inputPanel = new JPanel();
+	    inputPanel.setLayout(new GridLayout(3, 3));
+	    
+	    inputPanel.add(id_c);
+	    inputPanel.add(id_czytelnika);
+	    inputPanel.add(id_k);
+	    inputPanel.add(id_ksiazki);
+	    
         acceptButton = new JButton("Wprowadz");
         
         acceptButton.addActionListener((ActionListener) this);
@@ -92,10 +85,11 @@ public class CzytelnikTekst extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == acceptButton) {
-			b.insertCzytelnik(getImie(), getNazwisko(), getPesel());
-	        System.out.println("Lista czytelników: ");
-	        List<Czytelnik> czytelnicy = b.selectCzytelnicy();
-	        for(Czytelnik c: czytelnicy)
+			b.insertWypozycz(getIdCzytelnik(), getIdKsiazki());
+
+	        System.out.println("Lista wypozyczen: ");
+	        List<Wypozyczenia> wypozyczenia = b.selectWypozyczenia();
+	        for(Wypozyczenia c: wypozyczenia)
 	            System.out.println(c);
 	        
 	        SwingUtilities.invokeLater(new Runnable(){
@@ -110,6 +104,5 @@ public class CzytelnikTekst extends JPanel implements ActionListener{
 			});
 		}
 	}
+
 }
-
-

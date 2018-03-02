@@ -11,6 +11,7 @@ import java.util.List;
 
 import model.Czytelnik;
 import model.Ksiazka;
+import model.Wypozyczenia;
 
 public class Biblioteka {
 	
@@ -155,7 +156,25 @@ public class Biblioteka {
         }
         return ksiazki;
     }
- 
+    
+    public List<Wypozyczenia> selectWypozyczenia(){
+        List<Wypozyczenia> wypozyczenia = new LinkedList<Wypozyczenia>();
+        try {
+            ResultSet result_k = stat.executeQuery("SELECT * FROM ksiazki");
+            ResultSet result_c = stat.executeQuery("SELECT * FROM czytelnicy");
+            int id_k, id_c;
+            
+            while(result_k.next()) {
+                id_k = result_k.getInt("id_ksiazki");
+                id_c = result_c.getInt("id_czytelnika");
+                wypozyczenia.add(new Wypozyczenia(id_k, id_c));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return wypozyczenia;
+    }
     public void closeConnection() {
         try {
             conn.close();

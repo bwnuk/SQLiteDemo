@@ -14,23 +14,14 @@ import tekst.CzytelnikTekst;
 import tekst.KsiazkaTekst;
 import tekst.WypozyczenieTekst;
 
-public class ButtonPanelAdd extends JPanel implements ActionListener{
+public class ButtonPanelAdd extends JPanel implements ActionListener, Panel{
 	private final JFrame frame;
 	private Biblioteka b;
-	
-	private JButton czytelnikButton;
-	private JButton ksiazkaButton;
-	private JButton wypozyczenieButton;
-	private JButton backButton;
 	
 	public ButtonPanelAdd(JFrame frame, Biblioteka b){
 		this.b = b;
 		this.frame = frame;
 		
-		czytelnikButton = new JButton("Czytelnika");
-		ksiazkaButton = new JButton("Ksiazke");
-		wypozyczenieButton = new JButton("Wypozyczenie");
-		backButton = new JButton("Powrot");
 		
 		czytelnikButton.addActionListener(this);
 		ksiazkaButton.addActionListener(this);
